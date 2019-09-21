@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="LE_Log">
+      <HintPath>..\..\..\LE_Log\LE_Log\bin\Release\netstandard2.0\LE_Log.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

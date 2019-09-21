@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LE_Tools", "LE_Tools\LE_Tools.csproj", "{A81DE109-5B97-4317-B763-2555C336DFCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LE_ToolsTests", "LE_ToolsTests\LE_ToolsTests.csproj", "{B00E3B7B-371F-4FBB-A94D-728A4E8E8B41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A81DE109-5B97-4317-B763-2555C336DFCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A81DE109-5B97-4317-B763-2555C336DFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A81DE109-5B97-4317-B763-2555C336DFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A81DE109-5B97-4317-B763-2555C336DFCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B00E3B7B-371F-4FBB-A94D-728A4E8E8B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B00E3B7B-371F-4FBB-A94D-728A4E8E8B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B00E3B7B-371F-4FBB-A94D-728A4E8E8B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B00E3B7B-371F-4FBB-A94D-728A4E8E8B41}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D744778-ABA6-43AA-BC86-AD3BBBCF248D}
+	EndGlobalSection
+EndGlobal
