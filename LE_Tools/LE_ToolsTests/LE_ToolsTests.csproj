@@ -55,6 +55,7 @@
     <Compile Include="CollectionsTests\HilbertTests.cs" />
     <Compile Include="CollectionsTests\QuadtreeTests.cs" />
     <Compile Include="CollectionsTests\ServerTests.cs" />
+    <Compile Include="CollectionsTests\SListTests.cs" />
     <Compile Include="CollectionsTests\StructListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

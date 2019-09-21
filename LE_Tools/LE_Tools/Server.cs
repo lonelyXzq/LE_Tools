@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace LE_Tools.Collections
+namespace LE_Tools
 {
     class Server
     {
         private DateTime dataTime;
         private Thread thread;
         private AutoResetEvent exitEvent;
-        private System.Action action;
+        private Action action;
 
         private readonly int delayTime;
 
@@ -28,7 +28,7 @@ namespace LE_Tools.Collections
             exitEvent = new AutoResetEvent(false);
         }
 
-        public void SetAction(System.Action action)
+        public void SetAction(Action action)
         {
             this.action = action;
         }

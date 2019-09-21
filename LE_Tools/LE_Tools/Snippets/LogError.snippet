@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>LogError</Title>
+      <Author>LonelyExplorer</Author>
+      <Description>日志输出: 错误</Description>
+      <Shortcut>loge</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[LE_Log.Log.Error("$tag$","$info$");]]>
+      </Code>
+      <Declarations>
+        <Literal>
+          <ID>tag</ID>
+          <ToolTip>信息类型</ToolTip>
+          <Default>error</Default>
+        </Literal>
+        <Literal>
+          <ID>info</ID>
+          <ToolTip>信息内容</ToolTip>
+          <Default>data</Default>
+        </Literal>
+      </Declarations>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

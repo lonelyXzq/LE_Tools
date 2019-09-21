@@ -1,4 +1,6 @@
-﻿using LE_Tools.Collections;
+﻿using LE_Tools;
+using LE_Tools.Collections;
+using LE_Tools.EventSystem;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -23,6 +25,7 @@ namespace LE_ToolsTests.CollectionsTests
             server.Stop();
         }
 
+        //[EventAttach("das")]
         public void DoSomething()
         {
             Console.WriteLine("Do");
