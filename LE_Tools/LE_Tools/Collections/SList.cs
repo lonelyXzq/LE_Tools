@@ -58,6 +58,15 @@ namespace LE_Tools.Collections
             return re;
         }
 
+        public T GetData(int id)
+        {
+            if (Check(id))
+            {
+                return datas[id].Data;
+            }
+            return default;
+        }
+
         //public int AddId()
         //{
         //    int re;

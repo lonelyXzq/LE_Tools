@@ -69,6 +69,15 @@ namespace LE_Tools.Collections
             }
         }
 
+        public T GetData(int id)
+        {
+            if (Check(id))
+            {
+                return datas[id];
+            }
+            return default;
+        }
+
         public void Clear()
         {
             datas.Clear();

@@ -57,7 +57,10 @@
     <Compile Include="CollectionsTests\ServerTests.cs" />
     <Compile Include="CollectionsTests\SListTests.cs" />
     <Compile Include="CollectionsTests\StructListTests.cs" />
+    <Compile Include="IdManagerTests\IdDelivererTests.cs" />
+    <Compile Include="PerformanceTests\ForceChange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StructDataTests\BlockInfoTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

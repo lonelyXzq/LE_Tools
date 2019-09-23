@@ -5,21 +5,14 @@ using System.Text;
 namespace LE_Tools.Collections
 {
 
-    interface ISList<T>
+    interface ISList<T>:IBaseSList
     {
-        int Count { get; }
-
-        int Length { get; }
 
         T this[int index] { get; set; }
 
-        bool Check(int index);
         int Add(T data);
 
-        //int AddId();
-
-        void Remove(int index);
-        void Clear();
+        T GetData(int id);
 
         T[] GetAllDatas();
 

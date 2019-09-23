@@ -4,6 +4,7 @@ using System.Text;
 
 namespace LE_Tools.Collections
 {
+    [Obsolete]
     class DataChain<T> : IDataChain<T>
     {
         private readonly SList<T> datas;
