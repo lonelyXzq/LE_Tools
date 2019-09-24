@@ -61,6 +61,7 @@
     <Compile Include="PerformanceTests\ForceChange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StructDataTests\BlockInfoTests.cs" />
+    <Compile Include="StructDataTests\InitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

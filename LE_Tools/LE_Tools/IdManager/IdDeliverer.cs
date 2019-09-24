@@ -15,7 +15,12 @@ namespace LE_Tools.IdManager
 
         public static int CreateId<T, TD>() where TD : T
         {
-            if (ids.ContainsKey(typeof(TD).FullName))
+            return CreateId<T>(typeof(TD));
+        }
+
+        public static int CreateId<T>(Type type)
+        {
+            if (ids.ContainsKey(type.FullName))
             {
 
                 //LE_Log.Log.Error("IdAlreadyExistsError", "Type: {0} already does not exists", typeof(TD).FullName);
@@ -25,18 +30,18 @@ namespace LE_Tools.IdManager
             {
                 int tid = (int)longId;
                 baseIds[typeof(T).FullName] = longId + 1;
-                ids.Add(typeof(TD).FullName, tid);
+                ids.Add(type.FullName, tid);
                 return tid;
             }
             else
             {
                 baseIds.Add(typeof(T).FullName, (nextBaseId << 32) + 1);
-                ids.Add(typeof(TD).FullName, 0);
+                ids.Add(type.FullName, 0);
                 nextBaseId++;
                 return 0;
             }
+        } 
 
-        }
 
         public static int GetId<TD>()
         {

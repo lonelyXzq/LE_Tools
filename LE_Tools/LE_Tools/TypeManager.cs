@@ -10,17 +10,17 @@ namespace LE_Tools
     {
         public static object CreateInstance(Type type)
         {
-            return type.Assembly.CreateInstance(type.FullName);
+            return Activator.CreateInstance(type);
         }
 
-        public static T CreateInstance<T>(Type type) where T : class
+        public static T CreateInstance<T>()
         {
-            return type.Assembly.CreateInstance(type.FullName) as T;
+            return Activator.CreateInstance<T>();
         }
 
-        public static T CreateInstance<T>(string typeName) where T : class
+        public static T CreateInstance<T>(Type type)
         {
-            return typeof(T).Assembly.CreateInstance(typeName) as T;
+            return (T)Activator.CreateInstance(type);
         }
 
         public static Type[] GetTypes(Func<Type, bool> func)
