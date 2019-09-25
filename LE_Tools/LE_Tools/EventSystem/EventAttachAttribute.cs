@@ -12,6 +12,9 @@ namespace LE_Tools.EventSystem
         public EventAttachAttribute(string name)
         {
             this.name = name;
+            
+
+
         }
 
         public string Name => name;
