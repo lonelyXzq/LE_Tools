@@ -42,7 +42,8 @@ namespace LE_Tools.EventSystem
 
         public void Fire(object sender, T e)
         {
-            Events?.Invoke(sender, e);
+            eventPool.AddEvent(new LE_Event<T>(id, sender, e));
+            //Events?.Invoke(sender, e);
         }
 
         public void FireNow(object sender, T e)

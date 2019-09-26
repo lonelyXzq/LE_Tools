@@ -1,19 +1,37 @@
 ﻿using LE_Tools.Collections;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace LE_Tools.EventSystem
 {
     class EventPool<T>
     {
         private readonly ISList<Channel<T>> channels;
-        //private readonly Dictionary<string, int> ids;
 
-        public EventPool()
+        private readonly ConcurrentQueue<LE_Event<T>> events;
+
+        private string name;
+
+        private int mark;
+
+        public string Name { get => name; set => name = value; }
+
+        public EventPool(string name="default")
         {
+
             channels = new SteadyList<Channel<T>>();
+            events = new ConcurrentQueue<LE_Event<T>>();
+            this.name = name;
+            mark = 0;
             //ids = new Dictionary<string, int>();
+        }
+
+        internal void AddEvent(LE_Event<T> e)
+        {
+            events.Enqueue(e);
         }
 
         public Channel<T> CreateChannel(string name)
@@ -23,6 +41,21 @@ namespace LE_Tools.EventSystem
             int id = channels.Add(channel);
             channel.SetId(id);
             return channel;
+        }
+
+        public void Update()
+        {
+            int n = events.Count;
+            int i = 0;
+            while (events.TryDequeue(out LE_Event<T> e))
+            {
+                channels[e.ChannelId].FireNow(e.Sender, e.E);
+                i++;
+                if (i == n)
+                {
+                    return;
+                }
+            }
         }
 
         public Channel<T> GetChannel(int id)
@@ -35,19 +68,6 @@ namespace LE_Tools.EventSystem
             return channels.FindData(seek);
         }
 
-        //public void RemoveChannel(string name)
-        //{
-        //    if (ids.TryGetValue(name, out int id))
-        //    {
-        //        RemoveChannel(id);
-        //    }
-        //    else
-        //    {
-
-        //        LE_Log.Log.Error("Channel error", "Channel:[name: {0}] does not exists", name);
-        //    }
-        //}
-
         public void RemoveChannel(int id)
         {
             channels.Remove(id);
@@ -57,5 +77,6 @@ namespace LE_Tools.EventSystem
         {
             RemoveChannel(channel.Id);
         }
+
     }
 }
