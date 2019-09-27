@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LE_Tools.Fsm
 {
-    public class FsmState<T> where T:IFsmOwner
+    public class FsmState<T> where T : IFsmOwner
     {
         private readonly int id;
         private readonly string name;
@@ -28,7 +28,7 @@ namespace LE_Tools.Fsm
             this.changeEvents = fsmEventHandlers;
         }
 
-        internal void SubscribeChange(int id,FsmEventHandler<T> fsmEventHandler)
+        internal void SubscribeChange(int id, FsmEventHandler<T> fsmEventHandler)
         {
 
             if (changeEvents[id] == null)
@@ -41,7 +41,7 @@ namespace LE_Tools.Fsm
             }
         }
 
-        internal void Subscribe(FsmActiveChance fsmActiveChance,FsmEventHandler<T> fsmEvent)
+        internal void Subscribe(FsmActiveChance fsmActiveChance, FsmEventHandler<T> fsmEvent)
         {
             int id = (int)fsmActiveChance;
             if (fsmEvents[id] == null)
@@ -54,12 +54,23 @@ namespace LE_Tools.Fsm
             }
         }
 
-        public void ChangeTo(int id,T owner)
+        internal void UnSubscribeChange(int id, FsmEventHandler<T> fsmEventHandler)
+        {
+            changeEvents[id] -= fsmEventHandler;
+        }
+
+        internal void UnSubscribe(FsmActiveChance fsmActiveChance, FsmEventHandler<T> fsmEvent)
+        {
+            int id = (int)fsmActiveChance;
+            fsmEvents[id] -= fsmEvent;
+        }
+
+        public void ChangeTo(int id, T owner)
         {
             changeEvents[id]?.Invoke(owner);
         }
 
-        public void Active(FsmActiveChance fsmActiveChance,T owner)
+        public void Active(FsmActiveChance fsmActiveChance, T owner)
         {
             int id = (int)fsmActiveChance;
             fsmEvents[id]?.Invoke(owner);

@@ -4,16 +4,16 @@ using System.Text;
 
 namespace LE_Tools.Fsm
 {
-    public class Fsm<T> where T : IFsmOwner
+    public static class Fsm<T> where T : IFsmOwner
     {
-        private readonly IReadOnlyDictionary<string, FsmState<T>> fsmStates;
+        private static readonly IReadOnlyDictionary<string, FsmState<T>> fsmStates;
 
-        public Fsm(Dictionary<string, FsmState<T>> states)
+        static Fsm()
         {
-            fsmStates = states;
+            fsmStates = FsmManager.GetStates<T>();
         }
 
-        public FsmState<T> GetFsmState(string state)
+        public static FsmState<T> GetFsmState(string state)
         {
             if (fsmStates.TryGetValue(state, out FsmState<T> fsm))
             {
@@ -22,10 +22,9 @@ namespace LE_Tools.Fsm
             LE_Log.Log.Error("FsmStateError", "FsmState[ownerType: {0} ,name: {1} ] does not exists"
                 , typeof(T).FullName, state);
             return null;
-
         }
 
-        public void ChangeState(T owner, string nowState, string toState)
+        public static void ChangeState(T owner, string nowState, string toState)
         {
             var now = GetFsmState(nowState);
             var to = GetFsmState(toState);

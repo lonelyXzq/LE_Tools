@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LE_Tools.EventSystem
+namespace LE_Tools.Fsm
 {
-    public interface IEventListener
+    class FsmHelper<T> where T:IFsmOwner
     {
+
     }
 }

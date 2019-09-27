@@ -1,50 +1,89 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace LE_Tools.Collections
 {
-    public class SafetySList<T> : ISList<T>
+    /// <summary>
+    /// id不复用
+    /// 多线程安全
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class SafetySList<T>
     {
-        public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private readonly ConcurrentDictionary<int, T> datas;
 
-        public int Count => throw new NotImplementedException();
+        private volatile int nextId;
 
-        public int Length => throw new NotImplementedException();
+        public T this[int index] { get => datas[index]; set => datas[index] = value; }
+
+        public int Count => datas.Count;
+
+        public SafetySList()
+        {
+            datas = new ConcurrentDictionary<int, T>();
+            nextId = -1;
+        }
 
         public int Add(T data)
         {
-            throw new NotImplementedException();
+            int _id = Interlocked.Increment(ref nextId);
+            while (!datas.TryAdd(_id, data))
+            {
+
+            }
+            return _id;
         }
 
         public bool Check(int index)
         {
-            throw new NotImplementedException();
+            return datas.ContainsKey(index);
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            datas.Clear();
         }
 
         public T[] FindData(Seek<T> seek)
         {
-            throw new NotImplementedException();
+            List<T> ts = new List<T>();
+            foreach (var data in datas.Values)
+            {
+                if (seek.Invoke(data))
+                {
+                    ts.Add(data);
+                }
+            }
+            return ts.ToArray();
         }
 
         public T[] GetAllDatas()
         {
-            throw new NotImplementedException();
+            return datas.Values.ToArray();
         }
 
         public T GetData(int id)
         {
-            throw new NotImplementedException();
+            if (datas.TryGetValue(id, out T data))
+            {
+                return data;
+            }
+            return default;
         }
 
         public void Remove(int index)
         {
-            throw new NotImplementedException();
+            if (datas.ContainsKey(index))
+            {
+                while (!datas.TryRemove(index, out _))
+                {
+
+                }
+            }
         }
     }
 }

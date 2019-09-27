@@ -4,7 +4,8 @@ using System.Text;
 
 namespace LE_Tools.EventSystem
 {
-    public interface IChannel
+    public class EventPoolManager<T>
     {
+
     }
 }

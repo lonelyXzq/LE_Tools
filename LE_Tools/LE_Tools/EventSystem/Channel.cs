@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LE_Tools.EventSystem
 {
-    public class Channel<T>:IChannel
+    public class Channel<T>
     {
         public event EventHandler<T> Events;
 

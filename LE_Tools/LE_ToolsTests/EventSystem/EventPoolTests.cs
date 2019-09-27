@@ -17,6 +17,7 @@ namespace LE_ToolsTests.EventSystem
         {
             EventPool<int> eventPool = new EventPool<int>();
             var t = eventPool.CreateChannel("a");
+            t.Events -= Ac;
             t.Events += Ac;
             t.FireNow(this, 5);
             Console.WriteLine(t.Name);

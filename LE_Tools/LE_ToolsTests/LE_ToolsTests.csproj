@@ -54,10 +54,12 @@
   <ItemGroup>
     <Compile Include="CollectionsTests\HilbertTests.cs" />
     <Compile Include="CollectionsTests\QuadtreeTests.cs" />
+    <Compile Include="CollectionsTests\SafetyListTests.cs" />
     <Compile Include="CollectionsTests\ServerTests.cs" />
     <Compile Include="CollectionsTests\SListTests.cs" />
     <Compile Include="CollectionsTests\StructListTests.cs" />
     <Compile Include="EventSystem\EventPoolTests.cs" />
+    <Compile Include="FsmTests\FsmInitTests.cs" />
     <Compile Include="IdManagerTests\IdDelivererTests.cs" />
     <Compile Include="PerformanceTests\ForceChange.cs" />
     <Compile Include="PerformanceTests\InstanceTests.cs" />

@@ -7,26 +7,29 @@ using System.Threading;
 
 namespace LE_Tools.EventSystem
 {
-    class EventPool<T>
+    public class EventPool<T>
     {
-        private readonly ISList<Channel<T>> channels;
+        private readonly SafetySList<Channel<T>> channels;
 
         private readonly ConcurrentQueue<LE_Event<T>> events;
 
         private string name;
 
-        private int mark;
+        private class Inst_
+        {
+            public static readonly EventPool<T> staticPool = new EventPool<T>("StaticPool");
+        }
+
+        public static EventPool<T> StaticPool => Inst_.staticPool;
 
         public string Name { get => name; set => name = value; }
 
-        public EventPool(string name="default")
+        public EventPool(string name = "default")
         {
 
-            channels = new SteadyList<Channel<T>>();
+            channels = new SafetySList<Channel<T>>();
             events = new ConcurrentQueue<LE_Event<T>>();
             this.name = name;
-            mark = 0;
-            //ids = new Dictionary<string, int>();
         }
 
         internal void AddEvent(LE_Event<T> e)

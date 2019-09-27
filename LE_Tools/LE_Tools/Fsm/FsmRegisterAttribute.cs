@@ -4,7 +4,8 @@ using System.Text;
 
 namespace LE_Tools.Fsm
 {
-    public interface IFsmOwner
+    [AttributeUsage(AttributeTargets.Class, Inherited = false)]
+    class FsmRegisterAttribute:Attribute
     {
 
     }
