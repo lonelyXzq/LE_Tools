@@ -6,6 +6,5 @@ namespace LE_Tools.Fsm
 {
     public interface IFsmOwner
     {
-
     }
 }

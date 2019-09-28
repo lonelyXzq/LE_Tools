@@ -4,10 +4,12 @@ using System.Text;
 
 namespace LE_Tools.Fsm
 {
+    [Obsolete]
     public class FsmState<T> where T : IFsmOwner
     {
         private readonly int id;
         private readonly string name;
+
         private readonly FsmEventHandler<T>[] fsmEvents;
         private FsmEventHandler<T>[] changeEvents;
 
