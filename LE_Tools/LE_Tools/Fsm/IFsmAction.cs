@@ -10,6 +10,6 @@ namespace LE_Tools.Fsm
 
         event FsmEventHandler<T> Handler;
 
-        void Active(T e);
+        void Activate(T e);
     }
 }

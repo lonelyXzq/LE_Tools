@@ -16,7 +16,7 @@ namespace LE_ToolsTests.FsmTests
         {
             FsmManager.Init();
             O o = new O();
-            Fsm<O>.Instance.ChangeState(o, "a", "b");
+            //Fsm<O>.ChangeState(o, "a", "b");
         }
 
         [TestMethod]
@@ -41,6 +41,68 @@ namespace LE_ToolsTests.FsmTests
             o.helper.Ondestory();
         }
 
+        [TestMethod]
+        public void InstanceTest()
+        {
+            FsmManager.Init();
+            O o = new O();
+            o.helper.OnInit();
+            o.helper.InstanceFsm.AddAction("a", "b", A);
+            o.helper.OnUpdate();
+            o.helper.Change("b");
+            o.helper.OnUpdate();
+            o.helper.Change("c");
+            o.helper.Ondestory();
+            Console.WriteLine("------------------");
+            O o1 = new O();
+            o1.helper.OnInit();
+            o1.helper.OnUpdate();
+            o1.helper.Change("b");
+            o1.helper.OnUpdate();
+            o1.helper.Change("c");
+            o1.helper.Ondestory();
+        }
+
+        [TestMethod]
+        public void AddStateTests()
+        {
+            FsmManager.Init();
+            O o = new O();
+            o.helper.InstanceFsm.AddState("d");
+            o.helper.InstanceFsm.AddAction("a", "d", B);
+            o.helper.InstanceFsm.AddAction("d", "a", B1);
+            o.helper.OnInit();
+            o.helper.OnUpdate();
+            Console.WriteLine("_____");
+            o.helper.Change("d");
+            Console.WriteLine("_____");
+            o.helper.Change("a");
+            Console.WriteLine("_____");
+            o.helper.Change("b");
+            o.helper.OnUpdate();
+            o.helper.Change("c");
+            Console.WriteLine("------------------");
+            O o1 = new O();
+            o1.helper.OnInit();
+            o1.helper.OnUpdate();
+            o1.helper.Change("b");
+            o1.helper.OnUpdate();
+            o1.helper.Change("c");
+        }
+
+        public static void B<O>(O n)
+        {
+            Console.WriteLine("change AD instance");
+        }
+        public static void B1<O>(O n)
+        {
+            Console.WriteLine("change DA instance");
+        }
+
+        public static void A<O>(O n)
+        {
+            Console.WriteLine("change AB instance");
+        }
     }
     class O : IFsmOwner
     {
@@ -157,31 +219,31 @@ namespace LE_ToolsTests.FsmTests
 
         public void Init()
         {
-            Fsm<O>.BuildState("a", "b", "c");
-            Fsm<O>.Instance.AddAction("a", FsmActiveChance.OnInit, A0);
-            Fsm<O>.Instance.AddAction("a", FsmActiveChance.OnEnter, A1);
-            Fsm<O>.Instance.AddAction("a", FsmActiveChance.OnUpdate, A2);
-            Fsm<O>.Instance.AddAction("a", FsmActiveChance.OnLeave, A3);
-            Fsm<O>.Instance.AddAction("a", FsmActiveChance.OnDestory, A4);
+            FsmBuilder<O>.Builder.BuildState("a", "b", "c");
+            FsmBuilder<O>.Builder.AddAction("a", FsmActiveChance.OnInit, A0);
+            FsmBuilder<O>.Builder.AddAction("a", FsmActiveChance.OnEnter, A1);
+            FsmBuilder<O>.Builder.AddAction("a", FsmActiveChance.OnUpdate, A2);
+            FsmBuilder<O>.Builder.AddAction("a", FsmActiveChance.OnLeave, A3);
+            FsmBuilder<O>.Builder.AddAction("a", FsmActiveChance.OnDestory, A4);
 
-            Fsm<O>.Instance.AddAction("b", FsmActiveChance.OnInit, B0);
-            Fsm<O>.Instance.AddAction("b", FsmActiveChance.OnEnter, B1);
-            Fsm<O>.Instance.AddAction("b", FsmActiveChance.OnUpdate, B2);
-            Fsm<O>.Instance.AddAction("b", FsmActiveChance.OnLeave, B3);
-            Fsm<O>.Instance.AddAction("b", FsmActiveChance.OnDestory, B4);
+            FsmBuilder<O>.Builder.AddAction("b", FsmActiveChance.OnInit, B0);
+            FsmBuilder<O>.Builder.AddAction("b", FsmActiveChance.OnEnter, B1);
+            FsmBuilder<O>.Builder.AddAction("b", FsmActiveChance.OnUpdate, B2);
+            FsmBuilder<O>.Builder.AddAction("b", FsmActiveChance.OnLeave, B3);
+            FsmBuilder<O>.Builder.AddAction("b", FsmActiveChance.OnDestory, B4);
 
-            Fsm<O>.Instance.AddAction("c", FsmActiveChance.OnInit, C0);
-            Fsm<O>.Instance.AddAction("c", FsmActiveChance.OnEnter, C1);
-            Fsm<O>.Instance.AddAction("c", FsmActiveChance.OnUpdate, C2);
-            Fsm<O>.Instance.AddAction("c", FsmActiveChance.OnLeave, C3);
-            Fsm<O>.Instance.AddAction("c", FsmActiveChance.OnDestory, C4);
+            FsmBuilder<O>.Builder.AddAction("c", FsmActiveChance.OnInit, C0);
+            FsmBuilder<O>.Builder.AddAction("c", FsmActiveChance.OnEnter, C1);
+            FsmBuilder<O>.Builder.AddAction("c", FsmActiveChance.OnUpdate, C2);
+            FsmBuilder<O>.Builder.AddAction("c", FsmActiveChance.OnLeave, C3);
+            FsmBuilder<O>.Builder.AddAction("c", FsmActiveChance.OnDestory, C4);
 
-            Fsm<O>.Instance.AddAction("a", "b", AB);
-            Fsm<O>.Instance.AddAction("b", "c", BC);
-            Fsm<O>.Instance.AddAction("c", "a", CA);
-            Fsm<O>.Instance.AddAction("b", "a", BA);
-            Fsm<O>.Instance.AddAction("c", "b", CB);
-            Fsm<O>.Instance.AddAction("a", "c", AC);
+            FsmBuilder<O>.Builder.AddAction("a", "b", AB);
+            FsmBuilder<O>.Builder.AddAction("b", "c", BC);
+            FsmBuilder<O>.Builder.AddAction("c", "a", CA);
+            FsmBuilder<O>.Builder.AddAction("b", "a", BA);
+            FsmBuilder<O>.Builder.AddAction("c", "b", CB);
+            FsmBuilder<O>.Builder.AddAction("a", "c", AC);
         }
     }
 

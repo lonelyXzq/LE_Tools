@@ -10,17 +10,15 @@ namespace LE_Tools.Fsm
         private readonly int to;
         private readonly int mark;
 
-        public FsmAction(int from, int to, int state)
+        internal FsmAction(int from, int to, int mark)
         {
-            if ((from > (1 << 14) - 1) || (to > (1 << 14) - 1) || (state > (1 << 3) - 1))
-            {
-                return;
-            }
+            //if ((from > (1 << 14) - 1) || (to > (1 << 14) - 1) || (state > (1 << 3) - 1))
+            //{
+            //    return;
+            //}
             this.from = from;
             this.to = to;
-            mark = to << 17;
-            mark += from << 3;
-            mark += state;
+            this.mark = mark;
         }
 
         public int From => from;
@@ -31,7 +29,7 @@ namespace LE_Tools.Fsm
 
         public event FsmEventHandler<T> Handler;
 
-        public void Active(T e)
+        public void Activate(T e)
         {
             Handler?.Invoke(e);
         }

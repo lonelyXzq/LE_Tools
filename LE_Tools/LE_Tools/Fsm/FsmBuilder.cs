@@ -52,7 +52,7 @@ namespace LE_Tools.Fsm
 
                 return;
             }
-            AddAction(new FsmAction<T>(now, next, 7), handler);
+            AddAction(now, next, Fsm<T>.CreateMark(now, next, 7), handler);
         }
 
         public void AddAction(string state, FsmActiveChance chance, FsmEventHandler<T> handler)
@@ -62,23 +62,27 @@ namespace LE_Tools.Fsm
             {
                 return;
             }
-            AddAction(new FsmAction<T>(now, 0, (int)chance), handler);
+            AddAction(now, 0, Fsm<T>.CreateMark(now, chance), handler);
         }
 
-        private void AddAction(FsmAction<T> fsmAction, FsmEventHandler<T> handler)
+        private void AddAction(int from, int to, int mark, FsmEventHandler<T> handler)
         {
-            if (actions.ContainsKey(fsmAction.Mark))
+            if (actions.ContainsKey(mark))
             {
-                actions[fsmAction.Mark].Handler += handler;
+                actions[mark].Handler += handler;
             }
             else
             {
+                FsmAction<T> fsmAction = new FsmAction<T>(from, to, mark);
                 fsmAction.Handler += handler;
                 actions.Add(fsmAction.Mark, fsmAction);
             }
         }
 
-        public static void Release()
+
+
+
+    public static void Release()
         {
             builder = null;
         }

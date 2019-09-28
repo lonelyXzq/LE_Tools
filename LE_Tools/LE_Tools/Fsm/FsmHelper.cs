@@ -14,7 +14,7 @@ namespace LE_Tools.Fsm
 
         public string State => state;
 
-        public Fsm<T> Helper => helper;
+        public Fsm<T> InstanceFsm => helper;
 
         public T Owner => owner;
 
@@ -27,11 +27,15 @@ namespace LE_Tools.Fsm
 
         public void OnInit()
         {
-            foreach (var item in Fsm<T>.FsmStates.Keys)
+            foreach (var item in Fsm_S<T>.FsmStates.Keys)
             {
-                helper.Active(owner, item, FsmActiveChance.OnInit);
+                helper.Activate(owner, item, FsmActiveChance.OnInit);
             }
-            helper.Active(owner, state, FsmActiveChance.OnEnter);
+            foreach (var item in helper.FsmStates.Keys)
+            {
+                helper.Activate(owner, item, FsmActiveChance.OnInit);
+            }
+            helper.Activate(owner, state, FsmActiveChance.OnEnter);
         }
 
         public void Change(string toState)
@@ -42,16 +46,21 @@ namespace LE_Tools.Fsm
 
         public void OnUpdate()
         {
-            helper.Active(owner, state,FsmActiveChance.OnUpdate);
+            helper.Activate(owner, state, FsmActiveChance.OnUpdate);
         }
 
         public void Ondestory()
         {
-            helper.Active(owner, state, FsmActiveChance.OnLeave);
-            foreach (var item in Fsm<T>.FsmStates.Keys)
+            helper.Activate(owner, state, FsmActiveChance.OnLeave);
+            foreach (var item in Fsm_S<T>.FsmStates.Keys)
             {
-                helper.Active(owner, item, FsmActiveChance.OnDestory);
+                helper.Activate(owner, item, FsmActiveChance.OnDestory);
             }
+            foreach (var item in helper.FsmStates.Keys)
+            {
+                helper.Activate(owner, item, FsmActiveChance.OnDestory);
+            }
+
 
         }
     }
