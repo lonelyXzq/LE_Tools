@@ -10,7 +10,7 @@ namespace LE_Tools.Fsm
         private readonly string name;
         private readonly string toName;
         private readonly FsmActiveChance chance;
-        private readonly bool mark;
+        private readonly int mark;
         private readonly Type type;
 
         public FsmActionInfoAttribute(string name, FsmActiveChance chance, Type type)
@@ -18,7 +18,7 @@ namespace LE_Tools.Fsm
             this.name = name;
             this.chance = chance;
             this.toName = null;
-            mark = false;
+            mark = 0;
             this.type = type;
         }
 
@@ -27,7 +27,7 @@ namespace LE_Tools.Fsm
             this.name = name;
             this.toName = toName;
             this.chance = FsmActiveChance.OnLeave;
-            mark = true;
+            mark = 1;
             this.type = type;
         }
 
@@ -37,7 +37,7 @@ namespace LE_Tools.Fsm
 
         public string ToName => toName;
 
-        public bool Mark => mark;
+        public int Mark => mark;
 
         public Type Type => type;
     }

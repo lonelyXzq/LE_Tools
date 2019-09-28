@@ -14,7 +14,8 @@ namespace LE_ToolsTests.FsmTests
         [TestMethod]
         public void InitTest()
         {
-            //FsmManager<O>.Init();
+            FsmManager.Init();
+            Fsm<O>.Init();
         }
 
     }
@@ -24,44 +25,24 @@ namespace LE_ToolsTests.FsmTests
     }
 
     [FsmRegister]
-    public static class FsmT
+    public class FsmT:IFsmProvide
     {
-        [FsmActionInfo("a", FsmActiveChance.OnInit)]
+        [FsmActionInfo("a", FsmActiveChance.OnInit,typeof(O))]
         public static void A<O>(O n)
         {
 
         }
 
-        [FsmActionInfo("b", FsmActiveChance.OnInit)]
+        [FsmActionInfo("b", FsmActiveChance.OnInit, typeof(O))]
         public static void B<O>(O n)
         {
 
         }
-        [FsmActionInfo("b", FsmActiveChance.OnInit)]
+        [FsmActionInfo("b", "a", typeof(O))]
         public static void Bo<O>(O n)
         {
 
         }
     }
 
-    [FsmRegister]
-    public class FsmT1
-    {
-        [FsmActionInfo("a", FsmActiveChance.OnUpdate)]
-        public void A<O>(O n)
-        {
-
-        }
-
-        [FsmActionInfo("b", FsmActiveChance.OnUpdate)]
-        public void B<O>(O n)
-        {
-
-        }
-        [FsmActionInfo("b", FsmActiveChance.OnUpdate)]
-        public void Bo<O>(O n)
-        {
-
-        }
-    }
 }

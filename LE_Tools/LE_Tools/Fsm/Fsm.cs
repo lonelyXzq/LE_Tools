@@ -8,9 +8,18 @@ namespace LE_Tools.Fsm
     {
         private static readonly IReadOnlyDictionary<string, FsmState<T>> fsmStates;
 
+        private static int count;
+
+        public static int Count { get => count; internal set => count = value; }
+
         static Fsm()
         {
             fsmStates = FsmManager.GetStates<T>();
+        }
+
+        public static void Init()
+        {
+
         }
 
         public static FsmState<T> GetFsmState(string state)

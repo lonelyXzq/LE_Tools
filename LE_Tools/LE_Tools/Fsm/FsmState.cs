@@ -11,6 +11,8 @@ namespace LE_Tools.Fsm
         private readonly FsmEventHandler<T>[] fsmEvents;
         private FsmEventHandler<T>[] changeEvents;
 
+        public bool HasChanges => changeEvents != null;
+
         public FsmState(string name, int id)
         {
             this.name = name;
@@ -30,7 +32,6 @@ namespace LE_Tools.Fsm
 
         internal void SubscribeChange(int id, FsmEventHandler<T> fsmEventHandler)
         {
-
             if (changeEvents[id] == null)
             {
                 changeEvents[id] = fsmEventHandler;
@@ -56,7 +57,10 @@ namespace LE_Tools.Fsm
 
         internal void UnSubscribeChange(int id, FsmEventHandler<T> fsmEventHandler)
         {
-            changeEvents[id] -= fsmEventHandler;
+            if (HasChanges)
+            {
+                changeEvents[id] -= fsmEventHandler;
+            }
         }
 
         internal void UnSubscribe(FsmActiveChance fsmActiveChance, FsmEventHandler<T> fsmEvent)
