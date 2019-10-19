@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LE_Tools.Fsm
 {
-    public class FsmBuilder<T> where T:IFsmOwner
+    public class FsmBuilder<T> where T : IFsmOwner
     {
         private static FsmBuilder<T> builder = new FsmBuilder<T>();
 
@@ -14,7 +14,7 @@ namespace LE_Tools.Fsm
 
         public Dictionary<int, IFsmAction<T>> Actions => actions;
 
-        private readonly Dictionary<string,int> fsmStates;
+        private readonly Dictionary<string, int> fsmStates;
 
         private readonly Dictionary<int, IFsmAction<T>> actions;
 
@@ -52,7 +52,7 @@ namespace LE_Tools.Fsm
 
                 return;
             }
-            AddAction(now, next, Fsm<T>.CreateMark(now, next, 7), handler);
+            AddAction(Fsm<T>.CreateMark(now, next, 7), handler);
         }
 
         public void AddAction(string state, FsmActiveChance chance, FsmEventHandler<T> handler)
@@ -62,10 +62,10 @@ namespace LE_Tools.Fsm
             {
                 return;
             }
-            AddAction(now, 0, Fsm<T>.CreateMark(now, chance), handler);
+            AddAction(Fsm<T>.CreateMark(now, chance), handler);
         }
 
-        private void AddAction(int from, int to, int mark, FsmEventHandler<T> handler)
+        private void AddAction(int mark, FsmEventHandler<T> handler)
         {
             if (actions.ContainsKey(mark))
             {
@@ -73,7 +73,7 @@ namespace LE_Tools.Fsm
             }
             else
             {
-                FsmAction<T> fsmAction = new FsmAction<T>(from, to, mark);
+                FsmAction<T> fsmAction = new FsmAction<T>(mark);
                 fsmAction.Handler += handler;
                 actions.Add(fsmAction.Mark, fsmAction);
             }
@@ -82,7 +82,7 @@ namespace LE_Tools.Fsm
 
 
 
-    public static void Release()
+        public static void Release()
         {
             builder = null;
         }

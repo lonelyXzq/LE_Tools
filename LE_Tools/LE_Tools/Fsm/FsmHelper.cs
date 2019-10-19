@@ -7,6 +7,7 @@ namespace LE_Tools.Fsm
     class FsmHelper<T> where T : IFsmOwner
     {
         private string state;
+        private int st;
 
         private readonly Fsm<T> helper;
 
@@ -22,46 +23,56 @@ namespace LE_Tools.Fsm
         {
             this.state = state;
             this.helper = new Fsm<T>();
+            this.st = helper.GetFsmState(state);
             this.owner = owner;
         }
 
         public void OnInit()
         {
-            foreach (var item in Fsm_S<T>.FsmStates.Keys)
+            foreach (var item in Fsm_S<T>.FsmStates.Values)
             {
-                helper.Activate(owner, item, FsmActiveChance.OnInit);
+                helper.Activate(owner, Fsm<T>.CreateMark(item, FsmActiveChance.OnInit));
             }
-            foreach (var item in helper.FsmStates.Keys)
+            foreach (var item in helper.FsmStates.Values)
             {
-                helper.Activate(owner, item, FsmActiveChance.OnInit);
+                helper.Activate(owner, Fsm<T>.CreateMark(item, FsmActiveChance.OnInit));
             }
-            helper.Activate(owner, state, FsmActiveChance.OnEnter);
+            helper.Activate(owner, Fsm<T>.CreateMark(st, FsmActiveChance.OnEnter));
         }
 
         public void Change(string toState)
         {
-            helper.ChangeState(owner, state, toState);
+            int id = helper.GetFsmState(toState);
+            if (id == -1)
+            {
+                //TODO:
+                return;
+            }
+            helper.ChangeState(owner, st, id);
+            st = id;
             state = toState;
+
         }
 
         public void OnUpdate()
         {
-            helper.Activate(owner, state, FsmActiveChance.OnUpdate);
+            if (st != -1)
+            {
+                helper.Activate(owner, Fsm<T>.CreateMark(st, FsmActiveChance.OnUpdate));
+            }
         }
 
         public void Ondestory()
         {
-            helper.Activate(owner, state, FsmActiveChance.OnLeave);
-            foreach (var item in Fsm_S<T>.FsmStates.Keys)
+            helper.Activate(owner, Fsm<T>.CreateMark(st, FsmActiveChance.OnLeave));
+            foreach (var item in Fsm_S<T>.FsmStates.Values)
             {
-                helper.Activate(owner, item, FsmActiveChance.OnDestory);
+                helper.Activate(owner, Fsm<T>.CreateMark(item, FsmActiveChance.OnDestory));
             }
-            foreach (var item in helper.FsmStates.Keys)
+            foreach (var item in helper.FsmStates.Values)
             {
-                helper.Activate(owner, item, FsmActiveChance.OnDestory);
+                helper.Activate(owner, Fsm<T>.CreateMark(item, FsmActiveChance.OnDestory));
             }
-
-
         }
     }
 }

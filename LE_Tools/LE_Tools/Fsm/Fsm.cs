@@ -4,13 +4,20 @@ using System.Text;
 
 namespace LE_Tools.Fsm
 {
-    public class Fsm<T> where T : IFsmOwner
+     class Fsm<T> where T : IFsmOwner
     {
-        private readonly Dictionary<string, int> fsmStates = new Dictionary<string, int>();
+        private readonly Dictionary<string, int> fsmStates;
 
         private readonly Dictionary<int, IFsmAction<T>> actions;
 
         public IReadOnlyDictionary<string, int> FsmStates => fsmStates;
+
+        public IReadOnlyDictionary<int, IFsmAction<T>> Actions => actions;
+
+        public int StateCount => fsmStates.Count;
+
+        public int ActionCount => actions.Count;
+
 
         public static int CreateMark(int from, int to, int state)
         {
@@ -26,6 +33,7 @@ namespace LE_Tools.Fsm
         {
             Fsm_S<T>.Init();
             actions = new Dictionary<int, IFsmAction<T>>();
+            fsmStates = new Dictionary<string, int>();
         }
 
 
@@ -37,16 +45,16 @@ namespace LE_Tools.Fsm
             }
         }
 
+
         public void AddAction(string from, string to, FsmEventHandler<T> handler)
         {
             int now = GetFsmState(from);
             int next = GetFsmState(to);
             if (now == -1 || next == -1)
             {
-
                 return;
             }
-            AddAction(now, next, CreateMark(now, next, 7), handler);
+            AddAction(CreateMark(now, next, 7), handler);
         }
 
         public void AddAction(string state, FsmActiveChance chance, FsmEventHandler<T> handler)
@@ -56,10 +64,10 @@ namespace LE_Tools.Fsm
             {
                 return;
             }
-            AddAction(now, 0, CreateMark(now, chance), handler);
+            AddAction(CreateMark(now, chance), handler);
         }
 
-        private void AddAction(int from, int to, int mark, FsmEventHandler<T> handler)
+        private void AddAction(int mark, FsmEventHandler<T> handler)
         {
             if (actions.ContainsKey(mark))
             {
@@ -67,7 +75,7 @@ namespace LE_Tools.Fsm
             }
             else
             {
-                FsmAction<T> fsmAction = new FsmAction<T>(from, to, mark);
+                IFsmAction<T> fsmAction = new FsmAction<T>(mark);
                 fsmAction.Handler += handler;
                 actions.Add(fsmAction.Mark, fsmAction);
             }
@@ -103,31 +111,39 @@ namespace LE_Tools.Fsm
             return -1;
         }
 
-        public void ChangeState(T owner, string nowState, string toState)
+        internal int GetMark(string from, string to, int state)
         {
-            int now = GetFsmState(nowState);
-            int next = GetFsmState(toState);
+            int now = GetFsmState(from);
+            int next = GetFsmState(to);
             if (now == -1 || next == -1)
             {
-                return;
+
+                return -1;
             }
+            return CreateMark(now, next, state);
+        }
+
+        internal int GetMark(string state, FsmActiveChance chance)
+        {
+            int st = GetFsmState(state);
+            if (st == -1)
+            {
+
+                return -1;
+            }
+            return CreateMark(st, chance);
+
+        }
+
+        internal void ChangeState(T owner, int now, int next)
+        {
             //TODO:
             Activate(owner, (now << 3) + 3);
             Activate(owner, (next << 17) + (now << 3) + 7);
             Activate(owner, (next << 3) + 1);
         }
 
-        public void Activate(T owner, string nowState, FsmActiveChance chance)
-        {
-            int now = GetFsmState(nowState);
-            if (now == -1)
-            {
-                return;
-            }
-            Activate(owner, CreateMark(now, chance));
-        }
-
-        private void Activate(T owner, int mark)
+        internal void Activate(T owner, int mark)
         {
             Fsm_S<T>.Activate(owner, mark);
             if (actions.TryGetValue(mark, out var action))

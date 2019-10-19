@@ -10,7 +10,7 @@ namespace LE_Tools.StructData
 
         public BlockNode()
         {
-            this.datas = new T[BlockInfo.BlockSize];
+            datas = new T[BlockInfo.BlockSize];
         }
     }
 }

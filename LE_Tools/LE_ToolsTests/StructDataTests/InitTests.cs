@@ -17,9 +17,9 @@ namespace LE_ToolsTests.StructDataTests
         public void DataInitTest()
         {
             DataManager.Init();
-            Assert.AreEqual(2, DataManager.Count);
-            Assert.AreEqual(0,DataInfo<A>.Id);
-            Assert.AreEqual(1, DataInfo<B>.Id);
+            //Assert.AreEqual(2, DataManager.Count);
+            //Assert.AreEqual(0,DataInfo<A>.Id);
+            //Assert.AreEqual(1, DataInfo<B>.Id);
 
             Assert.AreEqual(typeof(SteadyList<BlockNode<A>>), DataManager.DataBlockManagers[DataInfo<A>.Id].GetType());
             Assert.AreEqual(typeof(SteadyList<BlockNode<B>>), DataManager.DataBlockManagers[DataInfo<B>.Id].GetType());
@@ -31,21 +31,21 @@ namespace LE_ToolsTests.StructDataTests
         public void TypeInitTests()
         {
             DataManager.Init();
-            Type_EManager.Init();
-            Assert.AreEqual(2, Type_EManager.Count);
-
-            var t = Type_EManager.Type_Es[0];
+            EntityTypeManager.Init();
+            //Assert.AreEqual(2, EntityTypeManager.Count);
+            int id = LE_Tools.IdManager.IdDeliverer.GetId<TypeA>();
+            var t = EntityTypeManager.Type_Es[id];
             Assert.AreEqual(typeof(TypeA).FullName, t.Name);
-            Assert.AreEqual(0, t.Id);
-            Assert.AreEqual(true, t.Info.Get(0));
-            Assert.AreEqual(true, t.Info.Get(1));
+            Assert.AreEqual(id, t.Id);
+            Assert.AreEqual(true, t.Info.Get(DataInfo<A>.Id));
+            Assert.AreEqual(true, t.Info.Get(DataInfo<B>.Id));
             Assert.AreEqual(typeof(TypeA), t.EntityType.GetType());
-
-            t = Type_EManager.Type_Es[1];
+            id = LE_Tools.IdManager.IdDeliverer.GetId<TypeB>();
+            t = EntityTypeManager.Type_Es[id];
             Assert.AreEqual(typeof(TypeB).FullName, t.Name);
-            Assert.AreEqual(1, t.Id);
-            Assert.AreEqual(false, t.Info.Get(0));
-            Assert.AreEqual(true, t.Info.Get(1));
+            Assert.AreEqual(id, t.Id);
+            Assert.AreEqual(false, t.Info.Get(DataInfo<A>.Id));
+            Assert.AreEqual(true, t.Info.Get(DataInfo<B>.Id));
             Assert.AreEqual(typeof(TypeB), t.EntityType.GetType());
         }
 
@@ -56,7 +56,7 @@ namespace LE_ToolsTests.StructDataTests
 
             public void Init(Entity_S entity)
             {
-                
+
             }
         }
 
@@ -70,12 +70,12 @@ namespace LE_ToolsTests.StructDataTests
             }
         }
 
-        public struct A:IData
+        public struct A : IData
         {
             int a;
         }
 
-        public struct B:IData
+        public struct B : IData
         {
             int b;
         }
