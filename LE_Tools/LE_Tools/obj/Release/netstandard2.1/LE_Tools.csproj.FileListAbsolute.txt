@@ -1,0 +1,11 @@
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_Tools\bin\Release\netstandard2.1\LE_Tools.deps.json
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_Tools\bin\Release\netstandard2.1\LE_Tools.dll
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_Tools\bin\Release\netstandard2.1\LE_Tools.pdb
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_Tools\bin\Release\netstandard2.1\LE_Log.dll
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_Tools\bin\Release\netstandard2.1\LE_Log.pdb
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_Tools\obj\Release\netstandard2.1\LE_Tools.AssemblyInfoInputs.cache
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_Tools\obj\Release\netstandard2.1\LE_Tools.AssemblyInfo.cs
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_Tools\obj\Release\netstandard2.1\LE_Tools.csproj.CopyComplete
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_Tools\obj\Release\netstandard2.1\LE_Tools.dll
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_Tools\obj\Release\netstandard2.1\LE_Tools.pdb
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_Tools\obj\Release\netstandard2.1\LE_Tools.csprojAssemblyReference.cache

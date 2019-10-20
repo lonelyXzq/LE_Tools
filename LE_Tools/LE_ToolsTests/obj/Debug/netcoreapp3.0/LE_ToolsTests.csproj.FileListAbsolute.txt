@@ -122,3 +122,12 @@ D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Debug\netcoreapp3.0\ru
 D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
 D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Debug\netcoreapp3.0\testhost.exe
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Debug\netcoreapp3.0\BenchmarkDotNet.dll
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Debug\netcoreapp3.0\BenchmarkDotNet.Annotations.dll
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Debug\netcoreapp3.0\CommandLine.dll
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Debug\netcoreapp3.0\Microsoft.DotNet.PlatformAbstractions.dll
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Debug\netcoreapp3.0\NuGet.Frameworks.dll
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Debug\netcoreapp3.0\System.CodeDom.dll
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Debug\netcoreapp3.0\System.Management.dll
+D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Management.dll

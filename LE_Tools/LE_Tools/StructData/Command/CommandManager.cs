@@ -4,11 +4,21 @@ using System.Text;
 
 namespace LE_Tools.StructData.Command
 {
-    static class CommandManager<T> where T : struct, IData
+    class CommandManager<T> where T : struct, IData
     {
-        public static CommandExecute<T> GetCommand(int id)
+        public event CommandOperator<T> Command;
+
+        public void ExecuteCommand(ref CommandData<T> data)
         {
-            return null;
+            Command?.Invoke(ref data);
+        }
+
+        public static void Execute(ref CommandData<T> data)
+        {
+            if (data.OperatorId == 1)
+            {
+                //setdate
+            }
         }
     }
 }

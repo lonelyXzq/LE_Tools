@@ -41,6 +41,10 @@
       "frameworks": {
         "netstandard2.1": {
           "dependencies": {
+            "BenchmarkDotNet": {
+              "target": "Package",
+              "version": "[0.11.5, )"
+            },
             "Microsoft.CodeAnalysis.CSharp": {
               "target": "Package",
               "version": "[3.3.1, )"

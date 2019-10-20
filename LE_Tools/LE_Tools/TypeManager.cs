@@ -35,6 +35,16 @@ namespace LE_Tools
             }
         }
 
+        /// <summary>
+        /// use this function after all systems finish init!
+        /// </summary>
+        public static void Release()
+        {
+            assemblies = null;
+            types = null;
+            GC.Collect();
+        }
+
         public static object CreateInstance(Type type)
         {
             return Activator.CreateInstance(type);
@@ -59,13 +69,11 @@ namespace LE_Tools
             {
                 if (fs[i].Extension == ".dll")
                 {
-                    //
                     var name = fs[i].Name.AsSpan();
                     string t = name.Slice(0, name.Length - 4).ToString();
                     if (!t.Contains('.'))
                     {
                         ass.Add(Assembly.Load(t));
-                        Console.WriteLine(fs[i].Name);
                     }
 
                 }
@@ -89,19 +97,23 @@ namespace LE_Tools
 
         public static Type[] GetTypes(Func<Type, bool> func)
         {
-
-            ConcurrentBag<Type> ts = new ConcurrentBag<Type>();
-            Parallel.For(0, assemblies.Count, (i) =>
+            if (types == null)
             {
-                GetTypes(assemblies[i], ts, func);
+
+                LE_Log.Log.FatalError("Assemblies load error", "types are already release or not loaded!");
             }
-            );
-            //int size = types.Count / count;
-            //Parallel.For(0, count, (i) =>
+            ConcurrentBag<Type> ts = new ConcurrentBag<Type>();
+            //Parallel.For(0, assemblies.Count, (i) =>
             //{
-            //    Get(i * size, (i + 1) * size, ts, func);
+            //    GetTypes(assemblies[i], ts, func);
             //}
             //);
+            int size = types.Count / count;
+            Parallel.For(0, count, (i) =>
+            {
+                Get(i * size, (i + 1) * size, ts, func);
+            }
+            );
             return ts.ToArray();
             //return AppDomain.CurrentDomain.GetAssemblies()
             //    .SelectMany(a => a.GetTypes().Where(func))
@@ -139,7 +151,6 @@ namespace LE_Tools
             }
             catch (Exception e)
             {
-
                 LE_Log.Log.FatalError("Load assembly error", "assembly load fail:{0}\r\n    {1}", assembly.FullName, e.Message);
             }
         }
