@@ -4,13 +4,27 @@ using System.Text;
 
 namespace LE_Tools.StructData
 {
-    class BlockNode<T> where T:struct,IData
+    unsafe ref struct BlockNode<T> where T:struct,IData
     {
-        private readonly T[] datas;
+        private readonly Span<T> datas;
+        private readonly IntPtr intPtr;
 
-        public BlockNode()
+        public BlockNode(int n)
         {
-            datas = new T[BlockInfo.BlockSize];
+            intPtr = MemSystem.MemoryManager.GetMemory(n);
+            datas = new Span<T>(intPtr.ToPointer(), n);
         }
+
+        public Span<T> Datas => datas;
+
+        public void Release()
+        {
+            MemSystem.MemoryManager.Release(intPtr);
+        }
+    }
+
+    public class BN<T> where T : struct, IData
+    {
+        
     }
 }

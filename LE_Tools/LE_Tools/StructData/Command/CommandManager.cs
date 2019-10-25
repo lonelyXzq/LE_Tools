@@ -17,6 +17,7 @@ namespace LE_Tools.StructData.Command
         {
             if (data.OperatorId == 1)
             {
+
                 //setdate
             }
         }

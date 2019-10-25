@@ -7,13 +7,13 @@ namespace LE_Tools.StructData
 {
     static class EntityTypeManager
     {
-        private static Type_E[] type_Es;
+        private static ComponentType[] type_Es;
 
         private static int count;
 
         public static int Count => count;
 
-        public static Type_E[] Type_Es => type_Es;
+        public static ComponentType[] Type_Es => type_Es;
 
         public static void Init()
         {
@@ -27,10 +27,10 @@ namespace LE_Tools.StructData
         internal static void Register(Type[] types)
         {
             count = types.Length;
-            type_Es = new Type_E[count];
+            type_Es = new ComponentType[count];
             for (int i = 0; i < count; i++)
             {
-                type_Es[i] = new Type_E((IEntityType)TypeManager.CreateInstance(types[i]));
+                type_Es[i] = new ComponentType((IEntityType)TypeManager.CreateInstance(types[i]));
             }
         }
     }

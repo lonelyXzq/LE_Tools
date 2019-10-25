@@ -11,13 +11,13 @@ namespace LE_Tools.StructData
 
         private static readonly string name;
 
-        private static readonly ISList<BlockNode<T>> dataBlocks;
+        private static readonly ISList<BN<T>> dataBlocks;
 
         static DataInfo()
         {
             id = IdManager.IdDeliverer.CreateId<IData, T>();
             name = typeof(T).Name;
-            dataBlocks = new SteadyList<BlockNode<T>>();
+            dataBlocks = new SteadyList<BN<T>>();
         }
 
         public static void Init()
@@ -28,6 +28,6 @@ namespace LE_Tools.StructData
 
         public static string Name => name;
 
-        internal static ISList<BlockNode<T>> DataBlocks => dataBlocks;
+        internal static ISList<BN<T>> DataBlocks => dataBlocks;
     }
 }

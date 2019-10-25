@@ -21,10 +21,10 @@ namespace LE_ToolsTests.StructDataTests
             //Assert.AreEqual(0,DataInfo<A>.Id);
             //Assert.AreEqual(1, DataInfo<B>.Id);
 
-            Assert.AreEqual(typeof(SteadyList<BlockNode<A>>), DataManager.DataBlockManagers[DataInfo<A>.Id].GetType());
-            Assert.AreEqual(typeof(SteadyList<BlockNode<B>>), DataManager.DataBlockManagers[DataInfo<B>.Id].GetType());
-            Assert.AreEqual(typeof(SteadyList<BlockNode<A>>), DataInfo<A>.DataBlocks.GetType());
-            Assert.AreEqual(typeof(SteadyList<BlockNode<B>>), DataInfo<B>.DataBlocks.GetType());
+            Assert.AreEqual(typeof(SteadyList<BN<A>>), DataManager.DataBlockManagers[DataInfo<A>.Id].GetType());
+            Assert.AreEqual(typeof(SteadyList<BN<B>>), DataManager.DataBlockManagers[DataInfo<B>.Id].GetType());
+            Assert.AreEqual(typeof(SteadyList<BN<A>>), DataInfo<A>.DataBlocks.GetType());
+            Assert.AreEqual(typeof(SteadyList<BN<B>>), DataInfo<B>.DataBlocks.GetType());
         }
 
         [TestMethod]
