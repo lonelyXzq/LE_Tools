@@ -2,36 +2,42 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace LE_ToolsTests.StructDataTests
 {
     [TestClass]
-    public class BlockInfo_OldTests
+    public class DataIndexTests
     {
-        BlockInfo_Old blockInfo ;
+        DataIndex blockInfo;
+        public int Size = 8;
+
+        public void AddAll()
+        {
+            for (int i = 0; i < Size; i++)
+            {
+                blockInfo.AddData();
+            }
+        }
 
         [TestInitialize]
         public void Init()
         {
-            blockInfo = new BlockInfo_Old(0, new int[4]);
-            for (int i = 0; i < BlockInfo_Old.BlockSize; i++)
-            {
-                Assert.AreEqual(i, blockInfo.AddData());
-            }
+            blockInfo = new DataIndex(Size);
+
         }
 
         [TestMethod]
         public void AddTests()
         {
+            AddAll();
             Assert.AreEqual(-1, blockInfo.AddData());
         }
 
         [TestMethod]
         public void RemoveTests()
         {
+            AddAll();
             Assert.AreEqual(true, blockInfo.IsFull);
 
             blockInfo.RemoveData(5);
@@ -45,12 +51,12 @@ namespace LE_ToolsTests.StructDataTests
             Assert.AreEqual(4, blockInfo.AddData());
             Assert.AreEqual(6, blockInfo.AddData());
 
-            for (int i = 0; i < BlockInfo_Old.BlockSize; i++)
+            for (int i = 0; i < Size; i++)
             {
                 blockInfo.RemoveData(i);
             }
             Assert.AreEqual(true, blockInfo.IsEmpty);
-            for (int i = 0; i < BlockInfo_Old.BlockSize; i++)
+            for (int i = 0; i < Size; i++)
             {
                 Assert.AreEqual(i, blockInfo.AddData());
             }
@@ -60,13 +66,19 @@ namespace LE_ToolsTests.StructDataTests
         [TestMethod]
         public void RandRemoveTest()
         {
-            if (blockInfo.IsEmpty)
-            {
-                for (int i = 0; i < BlockInfo_Old.BlockSize; i++)
-                {
-                    blockInfo.AddData();
-                }
-            }
+            blockInfo.AddData();
+            blockInfo.AddData();
+            blockInfo.AddData();
+            blockInfo.AddData();
+            blockInfo.AddData();
+            blockInfo.AddData();
+            blockInfo.AddData();
+            blockInfo.AddData();
+            blockInfo.RemoveData(2);
+            blockInfo.RemoveData(3);
+            blockInfo.RemoveData(1);
+            blockInfo.RemoveData(0);
+            AddAll();
             blockInfo.RemoveData(5);
             blockInfo.RemoveData(4);
             blockInfo.RemoveData(6);
@@ -75,7 +87,7 @@ namespace LE_ToolsTests.StructDataTests
             blockInfo.RemoveData(2);
             blockInfo.RemoveData(0);
             blockInfo.RemoveData(7);
-            if (BlockInfo_Old.BlockSize == 8)
+            if (Size == 8)
             {
                 Assert.AreEqual(true, blockInfo.IsEmpty);
             }

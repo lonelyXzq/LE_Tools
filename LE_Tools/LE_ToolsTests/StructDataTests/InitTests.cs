@@ -13,25 +13,34 @@ namespace LE_ToolsTests.StructDataTests
     [TestClass]
     public class InitTests
     {
+        [TestInitialize]
+        public void Init()
+        {
+            DataManager.Register(new Type[] { typeof(A), typeof(B), typeof(C) });
+            EntityTypeManager.Register(new Type[] { typeof(TypeA), typeof(TypeB) });
+        }
+
         [TestMethod]
         public void DataInitTest()
         {
-            DataManager.Init();
-            //Assert.AreEqual(2, DataManager.Count);
-            //Assert.AreEqual(0,DataInfo<A>.Id);
-            //Assert.AreEqual(1, DataInfo<B>.Id);
-
-            Assert.AreEqual(typeof(SteadyList<BN<A>>), DataManager.DataBlockManagers[DataInfo<A>.Id].GetType());
-            Assert.AreEqual(typeof(SteadyList<BN<B>>), DataManager.DataBlockManagers[DataInfo<B>.Id].GetType());
-            Assert.AreEqual(typeof(SteadyList<BN<A>>), DataInfo<A>.DataBlocks.GetType());
-            Assert.AreEqual(typeof(SteadyList<BN<B>>), DataInfo<B>.DataBlocks.GetType());
+            //DataManager.Init();
+            Assert.AreEqual(3, DataManager.Count);
+            Assert.AreEqual(0,DataInfo<A>.Id);
+            Assert.AreEqual(1, DataInfo<B>.Id);
+            Assert.AreEqual(2, DataInfo<C>.Id);
+            Assert.AreEqual(typeof(SteadyList<BlockNode>), DataManager.DataBlockManagers[DataInfo<A>.Id].GetType());
+            Assert.AreEqual(typeof(SteadyList<BlockNode>), DataManager.DataBlockManagers[DataInfo<B>.Id].GetType());
+            Assert.AreEqual(typeof(SteadyList<BlockNode>), DataManager.DataBlockManagers[DataInfo<C>.Id].GetType());
+            Assert.AreEqual(typeof(SteadyList<BlockNode>), DataInfo<A>.DataBlocks.GetType());
+            Assert.AreEqual(typeof(SteadyList<BlockNode>), DataInfo<B>.DataBlocks.GetType());
+            Assert.AreEqual(typeof(SteadyList<BlockNode>), DataInfo<C>.DataBlocks.GetType());
         }
 
         [TestMethod]
         public void TypeInitTests()
         {
-            DataManager.Init();
-            EntityTypeManager.Init();
+            //DataManager.Init();
+            //EntityTypeManager.Init();
             //Assert.AreEqual(2, EntityTypeManager.Count);
             int id = LE_Tools.IdManager.IdDeliverer.GetId<TypeA>();
             var t = EntityTypeManager.Type_Es[id];
@@ -72,14 +81,32 @@ namespace LE_ToolsTests.StructDataTests
 
         public struct A : IData
         {
-            int a;
+            public int a;
+
+            public A(int a)
+            {
+                this.a = a;
+            }
         }
 
         public struct B : IData
         {
-            int b;
+            public int b;
+
+            public B(int b)
+            {
+                this.b = b;
+            }
         }
 
+        public struct C : IData
+        {
+            public int c;
 
+            public C(int c)
+            {
+                this.c = c;
+            }
+        }
     }
 }

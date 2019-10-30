@@ -1,0 +1,170 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 1 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet restore  /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 in D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Release\netcoreapp3.0\6f6de2fc-e621-41d3-bd13-3f3072fe0769
+// command took 2.12s and exited with 0
+// start dotnet build -c Release  --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 in D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Release\netcoreapp3.0\6f6de2fc-e621-41d3-bd13-3f3072fe0769
+// command took 3.46s and exited with 0
+// ***** Done, took 00:00:05 (5.71 sec)   *****
+// Found 1 benchmarks:
+//   MarshalTests.UnManagerTest: DefaultJob
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: 高性能)// **************************
+// Benchmark: MarshalTests.UnManagerTest: DefaultJob
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "6f6de2fc-e621-41d3-bd13-3f3072fe0769.dll" --benchmarkName "LE_ToolsTests.PerformanceTests.MarshalTests.UnManagerTest" --job "Default" --benchmarkId 0 in D:\Github\LE_Projects\LE_Tools\LE_Tools\LE_ToolsTests\bin\Release\netcoreapp3.0\6f6de2fc-e621-41d3-bd13-3f3072fe0769\bin\Release\netcoreapp3.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 3.0.0 (CoreCLR 4.700.19.46205, CoreFX 4.700.19.46214), 64bit RyuJIT
+// GC=Concurrent Workstation
+// Job: DefaultJob
+
+OverheadJitting  1: 1 op, 418600.00 ns, 418.6000 us/op
+WorkloadJitting  1: 1 op, 458500.00 ns, 458.5000 us/op
+
+OverheadJitting  2: 16 op, 330600.00 ns, 20.6625 us/op
+WorkloadJitting  2: 16 op, 422700.00 ns, 26.4187 us/op
+
+WorkloadPilot    1: 16 op, 7200.00 ns, 450.0000 ns/op
+WorkloadPilot    2: 32 op, 24700.00 ns, 771.8750 ns/op
+WorkloadPilot    3: 64 op, 47800.00 ns, 746.8750 ns/op
+WorkloadPilot    4: 128 op, 61000.00 ns, 476.5625 ns/op
+WorkloadPilot    5: 256 op, 102000.00 ns, 398.4375 ns/op
+WorkloadPilot    6: 512 op, 202400.00 ns, 395.3125 ns/op
+WorkloadPilot    7: 1024 op, 407600.00 ns, 398.0469 ns/op
+WorkloadPilot    8: 2048 op, 813300.00 ns, 397.1191 ns/op
+WorkloadPilot    9: 4096 op, 1621800.00 ns, 395.9473 ns/op
+WorkloadPilot   10: 8192 op, 3262000.00 ns, 398.1934 ns/op
+WorkloadPilot   11: 16384 op, 6859700.00 ns, 418.6829 ns/op
+WorkloadPilot   12: 32768 op, 13369700.00 ns, 408.0109 ns/op
+WorkloadPilot   13: 65536 op, 26277300.00 ns, 400.9598 ns/op
+WorkloadPilot   14: 131072 op, 53072400.00 ns, 404.9103 ns/op
+WorkloadPilot   15: 262144 op, 109374600.00 ns, 417.2310 ns/op
+WorkloadPilot   16: 524288 op, 202321800.00 ns, 385.8982 ns/op
+WorkloadPilot   17: 1048576 op, 482965900.00 ns, 460.5922 ns/op
+WorkloadPilot   18: 2097152 op, 848446200.00 ns, 404.5707 ns/op
+
+OverheadWarmup   1: 2097152 op, 4479800.00 ns, 2.1361 ns/op
+OverheadWarmup   2: 2097152 op, 4409400.00 ns, 2.1026 ns/op
+OverheadWarmup   3: 2097152 op, 4487300.00 ns, 2.1397 ns/op
+OverheadWarmup   4: 2097152 op, 5003300.00 ns, 2.3858 ns/op
+OverheadWarmup   5: 2097152 op, 4414800.00 ns, 2.1051 ns/op
+OverheadWarmup   6: 2097152 op, 4715600.00 ns, 2.2486 ns/op
+OverheadWarmup   7: 2097152 op, 4507100.00 ns, 2.1492 ns/op
+
+OverheadActual   1: 2097152 op, 4921800.00 ns, 2.3469 ns/op
+OverheadActual   2: 2097152 op, 4954900.00 ns, 2.3627 ns/op
+OverheadActual   3: 2097152 op, 4612300.00 ns, 2.1993 ns/op
+OverheadActual   4: 2097152 op, 4599300.00 ns, 2.1931 ns/op
+OverheadActual   5: 2097152 op, 4697200.00 ns, 2.2398 ns/op
+OverheadActual   6: 2097152 op, 4664400.00 ns, 2.2242 ns/op
+OverheadActual   7: 2097152 op, 11857700.00 ns, 5.6542 ns/op
+OverheadActual   8: 2097152 op, 4677700.00 ns, 2.2305 ns/op
+OverheadActual   9: 2097152 op, 4689700.00 ns, 2.2362 ns/op
+OverheadActual  10: 2097152 op, 4671100.00 ns, 2.2274 ns/op
+OverheadActual  11: 2097152 op, 4902100.00 ns, 2.3375 ns/op
+OverheadActual  12: 2097152 op, 4634800.00 ns, 2.2100 ns/op
+OverheadActual  13: 2097152 op, 4879200.00 ns, 2.3266 ns/op
+OverheadActual  14: 2097152 op, 4684800.00 ns, 2.2339 ns/op
+OverheadActual  15: 2097152 op, 4607000.00 ns, 2.1968 ns/op
+
+WorkloadWarmup   1: 2097152 op, 828198300.00 ns, 394.9157 ns/op
+WorkloadWarmup   2: 2097152 op, 876451800.00 ns, 417.9248 ns/op
+WorkloadWarmup   3: 2097152 op, 847494400.00 ns, 404.1168 ns/op
+WorkloadWarmup   4: 2097152 op, 855563900.00 ns, 407.9647 ns/op
+WorkloadWarmup   5: 2097152 op, 856240600.00 ns, 408.2873 ns/op
+WorkloadWarmup   6: 2097152 op, 818650100.00 ns, 390.3628 ns/op
+
+// BeforeActualRun
+WorkloadActual   1: 2097152 op, 821281800.00 ns, 391.6177 ns/op
+WorkloadActual   2: 2097152 op, 873919800.00 ns, 416.7174 ns/op
+WorkloadActual   3: 2097152 op, 767776900.00 ns, 366.1046 ns/op
+WorkloadActual   4: 2097152 op, 750240300.00 ns, 357.7425 ns/op
+WorkloadActual   5: 2097152 op, 770976700.00 ns, 367.6303 ns/op
+WorkloadActual   6: 2097152 op, 774174500.00 ns, 369.1552 ns/op
+WorkloadActual   7: 2097152 op, 752720200.00 ns, 358.9250 ns/op
+WorkloadActual   8: 2097152 op, 770947500.00 ns, 367.6164 ns/op
+WorkloadActual   9: 2097152 op, 762891200.00 ns, 363.7749 ns/op
+WorkloadActual  10: 2097152 op, 752334800.00 ns, 358.7412 ns/op
+WorkloadActual  11: 2097152 op, 746707500.00 ns, 356.0579 ns/op
+WorkloadActual  12: 2097152 op, 759018600.00 ns, 361.9283 ns/op
+WorkloadActual  13: 2097152 op, 763428500.00 ns, 364.0311 ns/op
+WorkloadActual  14: 2097152 op, 761912600.00 ns, 363.3082 ns/op
+WorkloadActual  15: 2097152 op, 745017600.00 ns, 355.2521 ns/op
+
+// AfterActualRun
+WorkloadResult   1: 2097152 op, 763092100.00 ns, 363.8707 ns/op
+WorkloadResult   2: 2097152 op, 745555500.00 ns, 355.5086 ns/op
+WorkloadResult   3: 2097152 op, 766291900.00 ns, 365.3965 ns/op
+WorkloadResult   4: 2097152 op, 769489700.00 ns, 366.9213 ns/op
+WorkloadResult   5: 2097152 op, 748035400.00 ns, 356.6911 ns/op
+WorkloadResult   6: 2097152 op, 766262700.00 ns, 365.3825 ns/op
+WorkloadResult   7: 2097152 op, 758206400.00 ns, 361.5410 ns/op
+WorkloadResult   8: 2097152 op, 747650000.00 ns, 356.5073 ns/op
+WorkloadResult   9: 2097152 op, 742022700.00 ns, 353.8240 ns/op
+WorkloadResult  10: 2097152 op, 754333800.00 ns, 359.6944 ns/op
+WorkloadResult  11: 2097152 op, 758743700.00 ns, 361.7972 ns/op
+WorkloadResult  12: 2097152 op, 757227800.00 ns, 361.0744 ns/op
+WorkloadResult  13: 2097152 op, 740332800.00 ns, 353.0182 ns/op
+GC:  0 0 0 0 0
+
+// AfterAll
+
+Mean = 360.0944 ns, StdErr = 1.2858 ns (0.36%); N = 13, StdDev = 4.6361 ns
+Min = 353.0182 ns, Q1 = 356.0079 ns, Median = 361.0744 ns, Q3 = 364.6266 ns, Max = 366.9213 ns
+IQR = 8.6187 ns, LowerFence = 343.0799 ns, UpperFence = 377.5546 ns
+ConfidenceInterval = [354.5424 ns; 365.6463 ns] (CI 99.9%), Margin = 5.5520 ns (1.54% of Mean)
+Skewness = -0.08, Kurtosis = 1.46, MValue = 2
+
+Successfully reverted power plan (GUID: 381b4222-f694-41f0-9685-ff5bb260df2e FriendlyName: 平衡)
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts\results\LE_ToolsTests.PerformanceTests.MarshalTests-report.csv
+  BenchmarkDotNet.Artifacts\results\LE_ToolsTests.PerformanceTests.MarshalTests-report-github.md
+  BenchmarkDotNet.Artifacts\results\LE_ToolsTests.PerformanceTests.MarshalTests-report.html
+
+// * Detailed results *
+MarshalTests.UnManagerTest: DefaultJob
+Runtime = .NET Core 3.0.0 (CoreCLR 4.700.19.46205, CoreFX 4.700.19.46214), 64bit RyuJIT; GC = Concurrent Workstation
+Mean = 360.0944 ns, StdErr = 1.2858 ns (0.36%); N = 13, StdDev = 4.6361 ns
+Min = 353.0182 ns, Q1 = 356.0079 ns, Median = 361.0744 ns, Q3 = 364.6266 ns, Max = 366.9213 ns
+IQR = 8.6187 ns, LowerFence = 343.0799 ns, UpperFence = 377.5546 ns
+ConfidenceInterval = [354.5424 ns; 365.6463 ns] (CI 99.9%), Margin = 5.5520 ns (1.54% of Mean)
+Skewness = -0.08, Kurtosis = 1.46, MValue = 2
+-------------------- Histogram --------------------
+[351.293 ns ; 368.647 ns) | @@@@@@@@@@@@@
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.18362
+Intel Core i5-8250U CPU 1.60GHz (Kaby Lake R), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.0.100
+  [Host]     : .NET Core 3.0.0 (CoreCLR 4.700.19.46205, CoreFX 4.700.19.46214), 64bit RyuJIT
+  DefaultJob : .NET Core 3.0.0 (CoreCLR 4.700.19.46205, CoreFX 4.700.19.46214), 64bit RyuJIT
+
+
+|        Method |     Mean |    Error |   StdDev |
+|-------------- |---------:|---------:|---------:|
+| UnManagerTest | 360.1 ns | 5.552 ns | 4.636 ns |
+
+// * Hints *
+Outliers
+  MarshalTests.UnManagerTest: Default -> 2 outliers were removed (391.62 ns, 416.72 ns)
+
+// * Legends *
+  Mean   : Arithmetic mean of all measurements
+  Error  : Half of 99.9% confidence interval
+  StdDev : Standard deviation of all measurements
+  1 ns   : 1 Nanosecond (0.000000001 sec)
+
+// ***** BenchmarkRunner: End *****
+// ** Remained 0 benchmark(s) to run **
+Run time: 00:00:19 (19.88 sec), executed benchmarks: 1
+
+Global total time: 00:00:25 (25.6 sec), executed benchmarks: 1
+// * Artifacts cleanup *

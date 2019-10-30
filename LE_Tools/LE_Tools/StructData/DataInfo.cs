@@ -1,6 +1,7 @@
 ﻿using LE_Tools.Collections;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace LE_Tools.StructData
@@ -11,13 +12,19 @@ namespace LE_Tools.StructData
 
         private static readonly string name;
 
-        private static readonly ISList<BN<T>> dataBlocks;
+        private static readonly ISList<BlockNode> dataBlocks;
+
+        private static readonly int size;
 
         static DataInfo()
         {
             id = IdManager.IdDeliverer.CreateId<IData, T>();
             name = typeof(T).Name;
-            dataBlocks = new SteadyList<BN<T>>();
+            unsafe
+            {
+                size = Marshal.SizeOf<T>();
+            }
+            dataBlocks = new SteadyList<BlockNode>();
         }
 
         public static void Init()
@@ -28,6 +35,8 @@ namespace LE_Tools.StructData
 
         public static string Name => name;
 
-        internal static ISList<BN<T>> DataBlocks => dataBlocks;
+        internal static ISList<BlockNode> DataBlocks => dataBlocks;
+
+        public static int Size => size;
     }
 }

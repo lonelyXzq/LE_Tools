@@ -71,7 +71,16 @@ namespace LE_Tools.StructData
         {
             if (Check(index))
             {
-
+                //marks[index] = firtEmpty;
+                //firtEmpty = index;
+                ////marks[lastPoint] = index;
+                //if (IsFull)
+                //{
+                //    marks[index] = -2;
+                //    firtEmpty = index;
+                //    lastPoint = index;
+                //}
+                //count--;
                 marks[index] = -2;
                 marks[lastPoint] = index;
                 if (IsFull)

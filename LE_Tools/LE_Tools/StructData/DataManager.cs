@@ -13,9 +13,13 @@ namespace LE_Tools.StructData
 
         private static IBaseSList[] dataBlockManagers;
 
+        private static int[] dataSizes;
+
         public static int Count => count;
 
         internal static IBaseSList[] DataBlockManagers => dataBlockManagers;
+
+        internal static int[] DataSize => dataSizes; 
 
         static DataManager()
         {
@@ -28,13 +32,15 @@ namespace LE_Tools.StructData
             Type type1 = typeof(DataInfo<>);
             count = types.Length;
             dataBlockManagers = new IBaseSList[count];
+            dataSizes = new int[count];
             for (int i = 0; i < types.Length; i++)
             {
                 //type1.MakeGenericType(types[i]).GetMethod("Init", BindingFlags.Static | BindingFlags.Public)
                 //   .Invoke(null, null);
                 dataBlockManagers[i] = (IBaseSList)type1.MakeGenericType(types[i]).GetProperty("DataBlocks", BindingFlags.Static | BindingFlags.NonPublic)
                     .GetValue(null);
-
+                dataSizes[i] = (int)type1.MakeGenericType(types[i]).GetProperty("Size", BindingFlags.Static | BindingFlags.Public)
+                    .GetValue(null);
                 LE_Log.Log.Info("DataRegister", "DataId: {0}  DataName: {1}", i, types[i].FullName);
             }
         }

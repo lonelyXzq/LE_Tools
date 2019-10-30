@@ -8,13 +8,13 @@ Intel Core i5-8250U CPU 1.60GHz (Kaby Lake R), 1 CPU, 8 logical and 4 physical c
 
 
 ```
-|    Method |     Mean |     Error |    StdDev |   Median |
-|---------- |---------:|----------:|----------:|---------:|
-|   ByteAdd | 635.9 ns | 14.945 ns | 19.952 ns | 633.7 ns |
-|  ByteAdd2 | 579.4 ns | 11.564 ns | 16.211 ns | 572.7 ns |
-|  ShortAdd | 624.5 ns |  9.902 ns |  9.263 ns | 625.6 ns |
-| UShortAdd | 596.9 ns | 10.003 ns |  9.357 ns | 597.2 ns |
-|    IntAdd | 640.2 ns | 12.802 ns | 34.611 ns | 629.0 ns |
-|   UIntAdd | 315.4 ns |  4.877 ns |  4.562 ns | 316.9 ns |
-|   LongAdd | 617.7 ns | 11.711 ns | 10.954 ns | 619.3 ns |
-|  ULongAdd | 318.9 ns |  6.302 ns | 11.038 ns | 318.0 ns |
+|    Method |     Mean |     Error |     StdDev |
+|---------- |---------:|----------:|-----------:|
+|   ByteAdd | 598.7 ns | 11.900 ns | 11.1314 ns |
+|  ByteAdd2 | 613.9 ns | 12.549 ns | 30.0675 ns |
+|  ShortAdd | 605.9 ns |  8.362 ns |  7.8223 ns |
+| UShortAdd | 601.8 ns |  2.552 ns |  2.2621 ns |
+|    IntAdd | 601.9 ns |  1.071 ns |  0.8364 ns |
+|   UIntAdd | 307.0 ns |  2.469 ns |  2.1887 ns |
+|   LongAdd | 313.4 ns |  6.273 ns |  5.5608 ns |
+|  ULongAdd | 308.3 ns |  1.753 ns |  1.4642 ns |

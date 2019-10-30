@@ -12,11 +12,8 @@ namespace LE_Tools.StructData
     {
         private readonly string name;
         private readonly int id;
-
         private readonly IEntityType entityType;
-
         private readonly BitArray info;
-
         private readonly IMappingArray mappingArray;
         private readonly int dataCount;
 
